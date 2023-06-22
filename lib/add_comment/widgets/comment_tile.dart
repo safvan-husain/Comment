@@ -38,11 +38,14 @@ class CommentTile extends StatelessWidget {
               if (comment.isLast) {
                 var result = await _showTextInputDialog(context, this);
                 if (result != null && result.isNotEmpty) {
-                  context.read<CommentListCubit>().addComment(CommentModel(
-                        comment: result,
-                        imageUrl:
-                            'https://th.bing.com/th/id/OIP.ypSXdKe1AsTni4myyTayrwHaHa?pid=ImgDet&rs=1',
-                      ));
+                  context.read<CommentListCubit>().addComment(
+                        CommentModel(
+                          comment: result,
+                          imageUrl:
+                              'https://th.bing.com/th/id/OIP.ypSXdKe1AsTni4myyTayrwHaHa?pid=ImgDet&rs=1',
+                        ),
+                        context,
+                      );
                 }
               }
             },

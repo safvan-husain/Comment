@@ -13,11 +13,7 @@ class CommentViewModel extends BaseViewModel {
     required this.context,
   }) {
     final commentCubit = context.read<CommentListCubit>();
-    commentCubit.addComment(CommentModel(
-      comment: 'This is the first comment',
-      imageUrl:
-          'https://th.bing.com/th/id/OIP.ypSXdKe1AsTni4myyTayrwHaHa?pid=ImgDet&rs=1',
-    ));
+    commentCubit.initialComment();
     // commentCubit.getComments(CommentServices(client: http.Client()));
   }
   TextEditingController _textFieldController = TextEditingController();
