@@ -8,7 +8,7 @@ class CommentServices {
 
   CommentServices({required this.client});
 
-  Future<List<CommentModel>> getComments() async {
+  Future<List<CommentModel>> fetchComments() async {
     late List<CommentModel> comments;
 
     Uri uri = Uri.https('jsonplaceholder.typicode.com', '/photos');
@@ -30,6 +30,34 @@ class CommentServices {
       return comments;
     } catch (e) {
       return comments;
+    }
+  }
+
+  Future<CommentModel?> postComment({required String title}) async {
+    late CommentModel comment;
+
+    Uri uri = Uri.https('jsonplaceholder.typicode.com', '/photos');
+    Map<String, String> headers = {
+      'Content-type': 'application/json',
+    };
+
+    try {
+      http.Response response = await client.post(
+        uri,
+        headers: headers,
+        body: jsonEncode({
+          "title": title,
+          'thumbnailUrl':
+              'https://www.google.com/s2/favicons?sz=64&domain_url=yahoo.com',
+          'url': 'https://yahoo.com/',
+        }),
+      );
+      if (response.statusCode == 201) {
+        comment = CommentModel.fromJson(response.body);
+      }
+      return comment;
+    } catch (e) {
+      return null;
     }
   }
 }

@@ -1,21 +1,15 @@
-import 'dart:developer';
-
 import 'package:comment/add_comment/comment_view_model.dart';
 import 'package:comment/add_comment/cubit/comment_list_cubit.dart';
-import 'package:comment/add_comment/services/comment_services.dart';
 import 'package:comment/add_comment/widgets/comment_tile.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stacked/stacked.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 
 class CommentView extends StatelessWidget {
-  CommentView({super.key});
+  const CommentView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    CommentServices commentServices = CommentServices(client: http.Client());
-    commentServices.getComments();
     return ViewModelBuilder.reactive(
         viewModelBuilder: () => CommentViewModel(context: context),
         builder: (context, model, s) {
@@ -94,10 +88,14 @@ class CommentView extends StatelessWidget {
                         itemBuilder: (context, index) {
                           if (index == state.comments.length - 1) {
                             state.comments[index].isLast = true;
+                            return CommentTile(
+                              comment: state.comments[index],
+                              onTap: () => model.showInputDailog(),
+                            );
                           } else {
                             state.comments[index].isLast = false;
+                            return CommentTile(comment: state.comments[index]);
                           }
-                          return CommentTile(comment: state.comments[index]);
                         },
                         itemCount: state.comments.length,
                       ),
@@ -108,33 +106,5 @@ class CommentView extends StatelessWidget {
             )),
           );
         });
-  }
-
-  Future<String?> _showTextInputDialog(BuildContext context, model) async {
-    return showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: const Text('TODO'),
-          content: TextField(
-            controller: model._textFieldController,
-            decoration: const InputDecoration(
-              hintText: "Enter task name",
-            ),
-          ),
-          actions: <Widget>[
-            ElevatedButton(
-              child: const Text("Cancel"),
-              onPressed: () => Navigator.pop(context),
-            ),
-            ElevatedButton(
-              child: const Text('OK'),
-              onPressed: () =>
-                  Navigator.pop(context, model._textFieldController.text),
-            ),
-          ],
-        );
-      },
-    );
   }
 }
