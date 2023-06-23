@@ -17,11 +17,11 @@ class CommentTile extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey),
+        border: Border.all(color: Theme.of(context).dividerColor),
         borderRadius: BorderRadius.circular(10),
         color: comment.isLast
-            ? Colors.grey[200]
-            : const Color.fromARGB(255, 242, 249, 234),
+            ? Theme.of(context).cardColor
+            : Theme.of(context).disabledColor,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -31,6 +31,7 @@ class CommentTile extends StatelessWidget {
               child: Text(
             comment.comment,
             overflow: TextOverflow.ellipsis,
+            style: const TextStyle(fontWeight: FontWeight.w400),
           )),
           InkWell(
             onTap: () async {
@@ -39,7 +40,7 @@ class CommentTile extends StatelessWidget {
               }
             },
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+              padding: const EdgeInsets.only(right: 15, bottom: 5),
               child: Icon(comment.isLast ? Icons.add : Icons.done),
             ),
           )

@@ -26,7 +26,7 @@ class CommentViewModel extends BaseViewModel {
     commentRepository.initialComment();
 
     //if you want to disable fetching from the api, stop the below comment from executing
-    // commentRepository.getComments(CommentServices(client: http.Client()));
+    // commentRepository.getComments();
   }
   final TextEditingController _textEditingController = TextEditingController();
   void showInputDailog() async {
@@ -56,7 +56,7 @@ class CommentViewModel extends BaseViewModel {
             Icon(Icons.done_outline)
           ],
         ),
-        backgroundColor: Colors.grey[200], // Set the background color
+        backgroundColor: Colors.grey[300], // Set the background color
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(16)),
         ),
