@@ -1,4 +1,4 @@
-import 'package:comment/add_comment/services/comment_services.dart';
+import 'package:comment/comment/services/comment_services.dart';
 import 'package:flutter/material.dart';
 
 import '../model/comment_model.dart';

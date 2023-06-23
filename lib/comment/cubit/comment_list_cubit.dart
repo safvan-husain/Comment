@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:comment/add_comment/model/comment_model.dart';
+import 'package:comment/comment/model/comment_model.dart';
 
 part 'comment_list_state.dart';
 

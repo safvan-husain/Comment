@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:comment/add_comment/model/comment_model.dart';
+import 'package:comment/comment/model/comment_model.dart';
 
 @immutable
 class CommentTile extends StatelessWidget {
@@ -15,7 +15,7 @@ class CommentTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(10),
+      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       decoration: BoxDecoration(
         border: Border.all(color: Theme.of(context).dividerColor),
         borderRadius: BorderRadius.circular(10),
