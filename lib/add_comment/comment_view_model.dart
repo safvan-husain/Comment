@@ -23,10 +23,10 @@ class CommentViewModel extends BaseViewModel {
         commentServices: commentServices, commentCubit: commentCubit);
 
     //if you want to use comments without fetching from the api use intialComment method to get the first comment
-    commentRepository.initialComment();
+    // commentRepository.initialComment();
 
     //if you want to disable fetching from the api, stop the below comment from executing
-    // commentRepository.getComments();
+    commentRepository.getComments();
   }
   final TextEditingController _textEditingController = TextEditingController();
   void showInputDailog() async {
