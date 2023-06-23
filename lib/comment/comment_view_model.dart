@@ -43,6 +43,8 @@ class CommentViewModel extends BaseViewModel {
   void showSuccess() {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
+        behavior: SnackBarBehavior.floating,
+        margin: const EdgeInsets.symmetric(horizontal: 5),
         content: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: const [
